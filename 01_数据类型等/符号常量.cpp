@@ -13,5 +13,4 @@ int main() {
     cout << FAT_BMI << endl;
 
     cout << "焦尔转为卡路里需要除以：" << J2C_RATE;
-
 }
