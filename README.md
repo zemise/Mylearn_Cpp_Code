@@ -16,7 +16,68 @@ struct 结构体类型 {
 };
 ```
 
+2. 结构体数组
 
+作为用户自定义数据类型，结构体是支持数组模式的。
+
+```c++
+// 声明数组对象
+[struct] 结构体类型 数组名[数组长度];
+
+// 赋值数组的每一个元素
+数组名[0] = {, , ,...};
+数组名[1] = {, , ,...};
+
+// 声明和赋值同步的快捷写法
+[struct] 结构体类型 数组名[数组长度] = {{}, {}, {},...};
+```
+
+3. 结构体指针
+
+作为一种数据类型，结构体也是支持使用指针的。
+
+- 引入已经存在结构体地址
+```c++
+struct Student {
+    string name;
+    string major_code = "0000";
+    int dormitory_num = 1;
+};
+
+struct Student stu = {"zemise", "0001", 5};
+struct Student *p = &stu;
+```
+- 通过new操作符申请指针空间
+```c++
+struct Student *p = new Student{"zemise", "0002", 6};
+```
+- 使用指针变量访问结构体成员需要更换操作符号为：->
+```c++
+cout << p -> name << endl;
+cout << p -> major_code << endl;
+```
+
+4. 结构体指针数组
+
+结构体同样可以使用指针数组，主要用于动态内存分配，方便管理大量结构体占用的内存。
+
+- 引入已存在结构体数组地址
+```c++
+struct Student arr[] = {{}, {}, {}, ...};
+// 指向已经存在的数组地址
+struct Student *p  = arr; // 这里不需要加&，因为数组对象本质上就是地址（指向数组第一个元素的位置）
+cout << p[0].name << endl;
+cout << p[1].name << endl;
+```
+
+- 通过new操作符申请指针数组空间
+```c++
+struct Student *p =  new Student[3] {{}, {}, {}};
+cout << p[0].name << endl;
+cout << p[1].name << endl;
+
+delete[] p;
+```
 ---
 
 ## day04
